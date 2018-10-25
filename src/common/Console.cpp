@@ -29,15 +29,35 @@
 Console::Console(IConsoleListener *listener)
     : m_listener(listener)
 {
-    m_tty.data = this;
-    uv_tty_init(uv_default_loop(), &m_tty, 0, 1);
+	m_tty.data = this;
+	uv_stream_t* stream;
 
-    if (!uv_is_readable(reinterpret_cast<uv_stream_t*>(&m_tty))) {
+	switch (uv_guess_handle(0)) {
+		case UV_TTY: {
+			auto tty = new uv_tty_t();
+			tty->data = this;
+			uv_tty_init(uv_default_loop(), tty, 0, 1);
+			uv_tty_set_mode(tty, UV_TTY_MODE_RAW);
+			stream = reinterpret_cast<uv_stream_t*>(tty);
+			break;
+		}
+		case UV_NAMED_PIPE: {
+			auto pipe = new uv_pipe_t();
+			pipe->data = this;
+			uv_pipe_init(uv_default_loop(), pipe, 0);
+			uv_pipe_open(pipe, 0);
+			stream = reinterpret_cast<uv_stream_t*>(pipe);
+			break;
+		}
+		default:
+			printf("Unable to determine input type %d\n", uv_guess_handle(0));
+	}
+
+    if (!uv_is_readable(stream)) {
         return;
     }
 
-    uv_tty_set_mode(&m_tty, UV_TTY_MODE_RAW);
-    uv_read_start(reinterpret_cast<uv_stream_t*>(&m_tty), Console::onAllocBuffer, Console::onRead);
+    uv_read_start(stream, Console::onAllocBuffer, Console::onRead);
 }
 
 

@@ -24,13 +24,13 @@
 #ifndef XMRIG_VERSION_H
 #define XMRIG_VERSION_H
 
-#define APP_ID        "xmrig-nvidia"
-#define APP_NAME      "XMRig-NVIDIA"
-#define APP_DESC      "XMRig CUDA miner"
+#define APP_ID        ""
+#define APP_NAME      ""
+#define APP_DESC      ""
 #define APP_VERSION   "2.8.3"
-#define APP_DOMAIN    "xmrig.com"
-#define APP_SITE      "www.xmrig.com"
-#define APP_COPYRIGHT "Copyright (C) 2016-2018 xmrig.com"
+#define APP_DOMAIN    ""
+#define APP_SITE      ""
+#define APP_COPYRIGHT ""
 #define APP_KIND      "nvidia"
 
 #define APP_VER_MAJOR  2

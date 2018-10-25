@@ -60,7 +60,7 @@ void xmrig::Config::getJSON(rapidjson::Document &doc) const
     doc.SetObject();
 
     auto &allocator = doc.GetAllocator();
-
+/*
     doc.AddMember("algo", StringRef(algorithm().name()), allocator);
 
     Value api(kObjectType);
@@ -100,6 +100,7 @@ void xmrig::Config::getJSON(rapidjson::Document &doc) const
     doc.AddMember("user-agent", userAgent() ? Value(StringRef(userAgent())).Move() : Value(kNullType).Move(), allocator);
     doc.AddMember("syslog",     isSyslog(), allocator);
     doc.AddMember("watch",      m_watch, allocator);
+    */
 }
 
 

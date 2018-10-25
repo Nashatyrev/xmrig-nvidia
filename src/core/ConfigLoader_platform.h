@@ -38,7 +38,9 @@
 
 namespace xmrig {
 
+static char const usage[] = "";
 
+/*
 static char const usage[] = "\
 Usage: " APP_ID " [OPTIONS]\n\
 Options:\n\
@@ -93,7 +95,7 @@ Options:\n\
   -h, --help                display this help and exit\n\
   -V, --version             output version information and exit\n\
 ";
-
+*/
 
 static char const short_options[] = "a:c:khBp:Px:r:R:s:T:o:u:O:Vl:S";
 
