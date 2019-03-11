@@ -167,6 +167,8 @@ void xmrig::App::onConsoleCommand(char command)
         Workers::printHealth();
         break;
 
+	case 'q':
+	case 'Q':
     case 3:
         LOG_WARN("Ctrl+C received, exiting");
         close();
